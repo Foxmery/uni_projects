@@ -10,23 +10,23 @@ using namespace std;
 
 // prototypes
 void print_menu();
-void add_ship(all_ships &ship_list);
+void add_ship(Ship ship[], int&);
 
 int main()
 {
-    int choice;
-    all_ships ship_list;
+    int choice, ships_count(0);
+    Ship ships[configs::MAX_SHIPS];
 
     print_menu();
 
-    add_ship(ship_list);
+    add_ship(ships, ships_count);
 
     return 0;
 }
 
 void print_menu()
 {
-    // TODO: print the title in the middle example: =====title=====
+    // print the title
     cout << "\n======SHIPPING======\n\n";
     
     // print the main menu
@@ -40,7 +40,7 @@ void print_menu()
     cout << "Press any Character to exit and save.\n";
 }
 
-void add_ship(all_ships &ship_list)
+void add_ship(Ship ship[], int &ship_count)
 {
     // TODO: read ship parameters from input and pass them to Ship constructor
     Ship new_ship;
@@ -57,15 +57,10 @@ void add_ship(all_ships &ship_list)
     while (!(cin >> new_ship.capacity))
         { clear_faulty_input("Please enter a number.\n"); }
 
-    // if ship_list.count doesn't have a value assign a value to it and put the new ship.
-    if(!ship_list.count)
-    {
-        ship_list.count = 1;
-        ship_list.ship[0] = &new_ship;
-    }
-    else 
-    {
-        ship_list.count++;
-        ship_list.ship[ship_list.count - 1] = &new_ship;
-    }
+    cout << "departure day: ";
+    new_ship.departure_day = read_int_in_range(1, 30);
+
+    // add the newly created ship to the ship array
+    ship[ship_count] = new_ship;
+    ship_count++;
 }
