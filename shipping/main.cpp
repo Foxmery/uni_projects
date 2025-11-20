@@ -16,6 +16,10 @@ void display_ships(Ship ships[], const int &count);
 int main()
 {
     // TODO: if possible put the ships array in a .ini file or similar
+    /* 
+    const int MAX_SHIPS = 20;
+    const int MAX_CONTAINER = 10;
+    */
     int choice, ships_count(0);
     Ship ships[configs::MAX_SHIPS];
 
