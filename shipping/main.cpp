@@ -12,6 +12,7 @@ using namespace std;
 void print_menu();
 void add_ship(Ship ship[], int&);
 void display_ships(Ship ships[], const int &count);
+void create_first_submenu();
 
 int main()
 {
@@ -45,6 +46,7 @@ int main()
             break;
 
             case 1:
+                create_first_submenu();
                 add_ship(ships, ships_count);
                 clear_terminal();
                 cout << "Ship added!\n\n";
@@ -52,7 +54,6 @@ int main()
 
             case 2:
                 display_ships(ships, ships_count);
-                
                 break;
             
             default:
@@ -117,4 +118,64 @@ void add_ship(Ship ship[], int &ship_count)
     // add the newly created ship to the ship array
     ship[ship_count] = new_ship;
     ship_count++;
+}
+
+void add_multiple_ships(Ship ship[], int &ship_count)
+{
+    int amount;
+
+    cout << "How many ships do you want to enter: ";
+    
+    while(!(cin >> amount) || amount > 0 || amount < configs::MAX_SHIPS)
+    { clear_faulty_input("Please enter a valid input."); }
+
+    for (int i = 0; i < amount; i++)
+    {
+        add_ship(ship, ship_count);
+    }
+}
+
+void create_first_submenu()
+{
+    const int size = 3;
+    const string options[size] = {"1) add only one ship.",
+                              "2) add a list of ships.",
+                              "0) return."};
+    
+    clear_terminal();
+    create_sub_menu(options, size);
+}
+
+void submenu_1(Ship ship[], int &ship_count)
+{
+    int choice;
+    bool running = true;
+    cout << "Enter Your option: ";
+    
+    while(!(cin >> choice))
+        { clear_faulty_input("Please enter a valid input."); }
+
+    while(running)
+    {
+        switch (choice)
+        {
+            case 0:
+                running = false;
+                break;
+
+            case 1:
+                add_ship(ship, ship_count);
+                running = false;
+                break;
+
+            case 2:
+                add_multiple_ships(ship, ship_count);
+                running = false;
+                break;
+                
+            default:
+                cout << "No such command";
+                break;
+        }
+    }
 }

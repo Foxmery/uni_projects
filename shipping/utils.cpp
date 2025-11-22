@@ -9,10 +9,11 @@ void clear_faulty_input(const string &message)
 
 void clear_terminal()
 {
+    // ANSI code
     cout << "\033[2J\033[1;1H";
 }
 
-// TODO: add a function for notification like messages
+// TODO: add a function for notification like messages.
 
 int read_int_in_range(const int &min, const int &max)
 {
@@ -25,8 +26,8 @@ int read_int_in_range(const int &min, const int &max)
             if (value >= min && value <= max)
                 return value;    // valid → return
             else
-                cout << "Please enter a number between "
-                     << min << " and " << max << ".\n";
+                cout << "Please enter a number between ["
+                     << min << " and " << max << "].\n";
         }
         else
         {
