@@ -56,7 +56,7 @@ int main()
             
             default:
                 clear_terminal();
-                write_incolor("there is no such command. Please enter a number between [1-7].", ERROR);
+                write_incolor("There is no such command. Please enter a number between [1-7].", ERROR);
                 break;
         }
     }
